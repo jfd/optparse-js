@@ -1,6 +1,6 @@
 //  Optparse.js 1.0 Alpha - Option Parser for Javascript 
 // 
-//  Copyright (c) 2009 Johan Dahlberg 
+//  Copyright (c) 2009 Johan Dahlberg <jfd@distrop.com>
 // 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
