@@ -204,9 +204,11 @@ function OptionParser(rules) {
     this.banner = 'Usage: [Options]';
     this.options_title = 'Available options:'
     this._rules = rules;
+    this._halt = false;
     this.filters = extend({}, PREDEFINED_FILTERS);
     this.on_args = {};
     this.on_switches = {};
+    this.on_halt = function() {};
     this.default_handler = function() {};
 }
 
@@ -236,7 +238,7 @@ OptionParser.prototype = {
         var result = [], callback;
         var rules = build_rules(this.filters, this._rules);
         var tokens = args.concat([]);
-        while((token = tokens.shift())) {
+        while((token = tokens.shift()) && this._halt == false) {
             if(LONG_SWITCH_RE(token) || SHORT_SWITCH_RE(token)) {
                 // The token is a long or a short switch. Get the corresponding 
                 // rule, filter and handle it. Pass the switch to the default 
@@ -273,12 +275,20 @@ OptionParser.prototype = {
                 if(callback) callback(token);
             }
         }
-        return result;
+        return this._halt ? this.on_halt() : result;
     },
     
     // Returns a list with all defined option rules 
     options: function() {
         return build_rules(this.filters, this._rules);
+    },
+
+    // Add an on_halt handler if fn is specified. on_switch handlers can 
+    // call instance.halt to abort the argument parsing. This can be useful when
+    // displaying help or version information.
+    halt: function(fn) {
+        this._halt = fn === undefined
+        if(fn) this.on_halt = fn;
     },
     
     // Returns a representation of this OptionParser instance.
