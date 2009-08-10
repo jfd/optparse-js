@@ -262,20 +262,20 @@ OptionParser.prototype = {
                             }
                         } 
                         callback = this.on_switches[rule.name];
-                        if(callback) callback(arg);
+                        if(callback) callback.apply(this, [arg]);
                         break;
                     } 
                 }
-                if(i == rules.length) this.default_handler(token);
+                if(i == rules.length) this.default_handler.apply(this, [token]);
             } else {
                 // Did not match long or short switch. Parse the token as a 
                 // normal argument.
                 callback = this.on_args[result.length];
                 result.push(token);
-                if(callback) callback(token);
+                if(callback) callback.apply(this, [token]);
             }
         }
-        return this._halt ? this.on_halt() : result;
+        return this._halt ? this.on_halt.apply(this, []) : result;
     },
     
     // Returns a list with all defined option rules 
