@@ -278,12 +278,12 @@ OptionParser.prototype = {
         return this._halt ? this.on_halt.apply(this, []) : result;
     },
     
-    // Returns a list with all defined option rules 
+    // Returns an Array with all defined option rules 
     options: function() {
         return build_rules(this.filters, this._rules);
     },
 
-    // Add an on_halt handler if fn is specified. on_switch handlers can 
+    // Add an on_halt callback if argument ´´fn´´ is specified. on_switch handlers can 
     // call instance.halt to abort the argument parsing. This can be useful when
     // displaying help or version information.
     halt: function(fn) {
@@ -291,7 +291,7 @@ OptionParser.prototype = {
         if(fn) this.on_halt = fn;
     },
     
-    // Returns a representation of this OptionParser instance.
+    // Returns a string representation of this OptionParser instance.
     toString: function() {
         var builder = [this.banner, '', this.options_title], 
             shorts = false, longest = 0, rule;
