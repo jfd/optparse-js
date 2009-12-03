@@ -12,10 +12,10 @@ QUICK START
 The library defines one class, the OptionParser class. The class constructor takes one single argument, a list with a set of rules. Here is a quick example:
 
 	// Import the sys library
-	var sys = require('/sys.js');
+	var sys = require('sys');
 
 	// Import the optparse library.
-	var optparse = require('optparse.js');
+	var optparse = require('optparse');
 	
 	// Define an option called ´´help´´. We give it a quick alias named ´´-h´´ 	
 	// and a quick help text.

@@ -1,7 +1,7 @@
 // Import the optparse script
-var optparse = require('../src/optparse.js');
+var optparse = require('../src/optparse');
 
-node.mixin(require("/utils.js"));
+process.mixin(require("utils"));
 
 // Define some options
 var SWITCHES = [
@@ -63,7 +63,7 @@ parser.on('help', function() {
 });
 
 // Parse command line arguments
-parser.parse(ARGV);
+parser.parse(process.ARGV);
 
 if(print_summary) {
     puts("First non-switch argument is: " + first_arg);
