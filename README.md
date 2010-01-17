@@ -98,7 +98,7 @@ And this example show how to hook an argument (an option without the leading - o
 	
 It's also possible to define a default handler. The default handler is called when no rule's are meet. Here is an example how to add a ´default handler´:
 
-	parser.on(function(opt) {
+	parser.on(function(opt, value) {
 		puts('No handler was defined for option:' +  opt);
 	});
 	
