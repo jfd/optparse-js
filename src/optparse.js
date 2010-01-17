@@ -251,7 +251,7 @@ OptionParser.prototype = {
                         break;
                     } 
                 }
-                if(i == rules.length - 1) this.default_handler.apply(this, [token, arg]);
+                if(i == rules.length) this.default_handler.apply(this, [token, arg]);
             } else {
                 // Did not match long or short switch. Parse the token as a 
                 // normal argument.
