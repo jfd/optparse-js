@@ -225,13 +225,13 @@ OptionParser.prototype = {
         var tokens = args.concat([]);
         while((token = tokens.shift()) && this._halt == false) {
             if(LONG_SWITCH_RE(token) || SHORT_SWITCH_RE(token)) {
+                var arg = undefined;
                 // The token is a long or a short switch. Get the corresponding 
                 // rule, filter and handle it. Pass the switch to the default 
                 // handler if no rule matched.
                 for(var i = 0; i < rules.length; i++) {
                     var rule = rules[i];
                     if(rule.long == token || rule.short == token) {
-                        var arg = undefined;
                         if(rule.filter !== undefined) {
                             arg = tokens.shift();
                             if(!LONG_SWITCH_RE(arg) && !SHORT_SWITCH_RE(arg)) {
@@ -251,7 +251,7 @@ OptionParser.prototype = {
                         break;
                     } 
                 }
-                if(i == rules.length) this.default_handler.apply(this, [token]);
+                if(i == rules.length - 1) this.default_handler.apply(this, [token, arg]);
             } else {
                 // Did not match long or short switch. Parse the token as a 
                 // normal argument.
