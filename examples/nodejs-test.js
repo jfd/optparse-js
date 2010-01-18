@@ -11,7 +11,7 @@ var SWITCHES = [
     ['-H', '--help', "Shows this help section"],
     ['--date DATE', "A date. A date is expected E.G. 2009-01-14"],
     ['--number NUMBER', "A Number. Supported formats are 123, 123.123, 0xA123"],
-    ['--other NAME', "No handler defined for this option. Will be handled by the default handler."],
+    ['--other NAME', "No handler defined for this option. Will be handled by the wildcard handler."],
 ];
 
 // Create a new OptionParser with defined switches
@@ -64,8 +64,8 @@ parser.on('help', function() {
 });
 
 // Set a default handler
-parser.on(function(opt, value) {
-    puts('Default handler for ' + opt + ', value=' + value);
+parser.on('*', function(opt, value) {
+    puts('wild handler for ' + opt + ', value=' + value);
 });
 
 // Parse command line arguments

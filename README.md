@@ -98,10 +98,15 @@ And this example show how to hook an argument (an option without the leading - o
 	
 It's also possible to define a default handler. The default handler is called when no rule's are meet. Here is an example how to add a ´default handler´:
 
-	parser.on(function(opt, value) {
+	parser.on(function(opt) {
 		puts('No handler was defined for option:' +  opt);
 	});
 	
+Use the wildcard handler to build a custom ´´on´´ handler.
+
+	parser.on('*', function(opt, value) {
+		puts('option=' + opt + ', value=' + value);
+	});
 	
 ### function filter(name, callback)
 Adds a new filter extension to the OptionParser instance. The first argument is the name of the filter (trigger). The second argument is the actual filter  See the ´OPTION FILTERS´ section for more info. 
