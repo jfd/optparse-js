@@ -1,7 +1,9 @@
 // Import the optparse script
-var optparse = require('../src/optparse');
+require.paths.unshift(__dirname); //make local paths accessible
 
-process.mixin(require("utils"));
+var optparse = require('lib/optparse');
+
+var sys= require('sys');
 
 // Define some options
 var SWITCHES = [
@@ -21,7 +23,7 @@ parser.banner = 'Usage: nodejs-test.js [options]';
 
 // Internal variable to store options.
 var options = {
-    debug: false,
+    debug: true,
     files: [],
     number: undefined,
     date: undefined
@@ -39,7 +41,7 @@ parser.on('include-file', function(value) {
 
 // Handle the --print switch
 parser.on('print', function(value) {
-    puts('PRINT: ' + (value || 'No message entered'));
+    sys.puts('PRINT: ' + (value || 'No message entered'));
 });
 
 // Handle the --date switch
@@ -59,30 +61,30 @@ parser.on('debug', function() {
 
 // Handle the --help switch
 parser.on('help', function() {
-    puts(parser.toString());
+    sys.puts(parser.toString());
     print_summary = false;
 });
 
 // Set a default handler
 parser.on('*', function(opt, value) {
-    puts('wild handler for ' + opt + ', value=' + value);
+    sys.puts('wild handler for ' + opt + ', value=' + value);
 });
 
 // Parse command line arguments
 parser.parse(process.ARGV);
 
 if(print_summary) {
-    puts("First non-switch argument is: " + first_arg);
+    sys.puts("First non-switch argument is: " + first_arg);
     
     // Output all files that was included.
-    puts("No of files to include: " + options.files.length);
+    sys.puts("No of files to include: " + options.files.length);
     for(var i = 0; i < options.files.length; i++) {
-        puts("File [" + (i + 1) + "]:" + options.files[i]);
+        sys.puts("File [" + (i + 1) + "]:" + options.files[i]);
     }
 
     // Is debug-mode enabled?
-    puts("Debug mode is set to: " + options.debug);
+    sys.puts("Debug mode is set to: " + options.debug);
 
-    puts("Number value is: " + options.number);
-    puts("Date value is: " + options.date);
+    sys.puts("Number value is: " + options.number);
+    sys.puts("Date value is: " + options.date);
 }
