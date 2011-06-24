@@ -90,9 +90,11 @@ Add's a callback for a switch or an argument (defined by index). Switch hooks MU
 		// Show help section
 	});
 	
-And this example show how to hook an argument (an option without the leading - or --): 
+And this example show how to hook a positional argument (an option without the leading - or --).
+Note that positional argument 0 will be "node" and positional argument 1 will be the path of the
+script being run. Positional argument 2 will be the first positional argument after the script path: 
 
-	parser.on(0, function(opt) {
+	parser.on(2, function(opt) {
 		puts('The first non-switch option is:' +  opt);
 	});
 	
