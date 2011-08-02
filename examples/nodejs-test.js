@@ -1,7 +1,5 @@
 // Import the optparse script
-require.paths.unshift(__dirname); //make local paths accessible
-
-var optparse = require('lib/optparse');
+var optparse = require('../lib/optparse');
 
 var sys= require('sys');
 
