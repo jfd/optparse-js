@@ -1,8 +1,6 @@
 // Import the optparse script
 var optparse = require('../lib/optparse');
 
-var sys= require('sys');
-
 // Define some options
 var SWITCHES = [
     ['-i', '--include-file FILE', "Includes a file"],
@@ -39,7 +37,7 @@ parser.on('include-file', function(value) {
 
 // Handle the --print switch
 parser.on('print', function(value) {
-    sys.puts('PRINT: ' + (value || 'No message entered'));
+    console.log('PRINT: ' + (value || 'No message entered'));
 });
 
 // Handle the --date switch
@@ -59,30 +57,30 @@ parser.on('debug', function() {
 
 // Handle the --help switch
 parser.on('help', function() {
-    sys.puts(parser.toString());
+    console.log(parser.toString());
     print_summary = false;
 });
 
 // Set a default handler
 parser.on('*', function(opt, value) {
-    sys.puts('wild handler for ' + opt + ', value=' + value);
+    console.log('wild handler for ' + opt + ', value=' + value);
 });
 
 // Parse command line arguments
 parser.parse(process.ARGV);
 
 if(print_summary) {
-    sys.puts("First non-switch argument is: " + first_arg);
+    console.log("First non-switch argument is: " + first_arg);
     
     // Output all files that was included.
-    sys.puts("No of files to include: " + options.files.length);
+    console.log("No of files to include: " + options.files.length);
     for(var i = 0; i < options.files.length; i++) {
-        sys.puts("File [" + (i + 1) + "]:" + options.files[i]);
+        console.log("File [" + (i + 1) + "]:" + options.files[i]);
     }
 
     // Is debug-mode enabled?
-    sys.puts("Debug mode is set to: " + options.debug);
+    console.log("Debug mode is set to: " + options.debug);
 
-    sys.puts("Number value is: " + options.number);
-    sys.puts("Date value is: " + options.date);
+    console.log("Number value is: " + options.number);
+    console.log("Date value is: " + options.date);
 }
