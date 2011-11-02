@@ -31,22 +31,22 @@ parser.on(0, function(value) {
 });
 
 // Handle the --include-file switch
-parser.on('include-file', function(value) {
+parser.on('include-file', function(name, value) {
     options.files.push(value);
 });
 
 // Handle the --print switch
-parser.on('print', function(value) {
+parser.on('print', function(name, value) {
     console.log('PRINT: ' + (value || 'No message entered'));
 });
 
 // Handle the --date switch
-parser.on('date', function(value) {
+parser.on('date', function(name, value) {
     options.date = value;
 });
 
 // Handle the --number switch
-parser.on('number', function(value) {
+parser.on('number', function(name, value) {
     options.number = value;
 });
 
