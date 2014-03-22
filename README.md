@@ -32,6 +32,7 @@ The library defines one class, the OptionParser class. The class constructor tak
 		sys.puts('Help');
 	});
 	
+	parser.parse(process.argv);
 
 
 DEFINING RULES
