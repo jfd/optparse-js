@@ -29,7 +29,7 @@ The library defines one class, the OptionParser class. The class constructor tak
 	// Hook the help option. The callback will be executed when the OptionParser 
 	// hits the switch ´´-h´´ or ´´--help´´. Each representatio
 	parser.on('help', function() {
-		sys.puts('Help');
+		console.log('Help');
 	});
 	
 	parser.parse(process.argv);
@@ -96,19 +96,19 @@ Note that positional argument 0 will be "node" and positional argument 1 will be
 script being run. Positional argument 2 will be the first positional argument after the script path: 
 
 	parser.on(2, function(opt) {
-		puts('The first non-switch option is:' +  opt);
+		console.log('The first non-switch option is:' +  opt);
 	});
 	
 It's also possible to define a default handler. The default handler is called when no rule's are meet. Here is an example how to add a ´default handler´:
 
 	parser.on(function(opt) {
-		puts('No handler was defined for option:' +  opt);
+		console.log('No handler was defined for option:' +  opt);
 	});
 	
 Use the wildcard handler to build a custom ´´on´´ handler.
 
 	parser.on('*', function(opt, value) {
-		puts('option=' + opt + ', value=' + value);
+		console.log('option=' + opt + ', value=' + value);
 	});
 	
 ### function filter(name, callback)
@@ -126,7 +126,7 @@ The function also takes an optional callback argument. If the callback argument 
 Here is an example how to add an ´on_halt´ callback:
 
 	parser.halt(function() {
-		puts('An option callback interupted the parser');
+		console.log('An option callback interupted the parser');
 	});
 
 	
