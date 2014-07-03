@@ -17,7 +17,7 @@ The library defines one class, the OptionParser class. The class constructor tak
 	// Import the optparse library.
 	var optparse = require('optparse');
 	
-	// Define an option called ´´help´´. We give it a quick alias named ´´-h´´ 	
+	// Define an option called `help`. We give it a quick alias named `-h` 	
 	// and a quick help text.
 	var switches = [
 		['-h', '--help', 'Shows help sections']
@@ -27,7 +27,7 @@ The library defines one class, the OptionParser class. The class constructor tak
 	var parser = new optparse.OptionParser(switches);
 	
 	// Hook the help option. The callback will be executed when the OptionParser 
-	// hits the switch ´´-h´´ or ´´--help´´. Each representatio
+	// hits the switch `-h` or `--help`. 
 	parser.on('help', function() {
 		console.log('Help');
 	});
@@ -42,9 +42,9 @@ The OptionParser constructor takes an Array with rules. Each rule is represented
 	['-h', '--help', 'Print this help']
 	
 	
-The first value is optional, and represents an alias for the long-named switch (the second value, in this case ´´--help´´). 
+The first value is optional, and represents an alias for the long-named switch (the second value, in this case `--help`). 
 
-The second argument is the actual rule. The rule must start with a double dash followed by a switch name (in this case ´help´). The OptionParser also supports special option arguments. Define an option argument in the rule by adding a named argument after the leading double dash and switch name (E.G '--port-number PORT_NUMBER'). The argument is then parsed to the option handler. To define an optional option argument, just add a braces around argument in the rule (E.G '--port-number [PORT_NUMBER]). The OptionParser also supports filter. More on that in in the section called ´Option Filters´.
+The second argument is the actual rule. The rule must start with a double dash followed by a switch name (in this case ´help´). The OptionParser also supports special option arguments. Define an option argument in the rule by adding a named argument after the leading double dash and switch name (E.G `--port-number PORT_NUMBER`). The argument is then parsed to the option handler. To define an optional option argument, just add a braces around argument in the rule (E.G `--port-number [PORT_NUMBER]`). The OptionParser also supports filter. More on that in in the section called ´Option Filters´.
 
 The third argument is an optional rule description. 
 
@@ -77,15 +77,15 @@ OPTION PARSER
 The OptionParser class has the following properties and methods:
 
 ### string banner
-An optional usage banner. This text is included when calling ´´toString´´. Default value is: "Usage: [Options]".
+An optional usage banner. This text is included when calling `toString`. Default value is: "Usage: [Options]".
 
 
 ### string options_title
-An optional title for the options list. This text is included when calling ´´toString´´. Default value is: "Available options:".
+An optional title for the options list. This text is included when calling `toString`. Default value is: "Available options:".
 
 
 ### function on(switch_or_arg_index, callback)
-Add's a callback for a switch or an argument (defined by index). Switch hooks MUST be typed witout the leading ´´--´´. This example show how to hook a switch:
+Add's a callback for a switch or an argument (defined by index). Switch hooks MUST be typed witout the leading `--`. This example show how to hook a switch:
 
 	parser.on('help', function(optional_argument) {
 		// Show help section
@@ -105,7 +105,7 @@ It's also possible to define a default handler. The default handler is called wh
 		console.log('No handler was defined for option:' +  opt);
 	});
 	
-Use the wildcard handler to build a custom ´´on´´ handler.
+Use the wildcard handler to build a custom `on` handler.
 
 	parser.on('*', function(opt, value) {
 		console.log('option=' + opt + ', value=' + value);
@@ -114,16 +114,16 @@ Use the wildcard handler to build a custom ´´on´´ handler.
 ### function filter(name, callback)
 Adds a new filter extension to the OptionParser instance. The first argument is the name of the filter (trigger). The second argument is the actual filter  See the ´OPTION FILTERS´ section for more info. 
 
-It's possible to override the default filters by passing the value "_DEFAULT" to the ´´name´´ argument. The name of the filter is automatically transformed into 
+It's possible to override the default filters by passing the value "_DEFAULT" to the `name` argument. The name of the filter is automatically transformed into 
 upper case.
 
 
 ### function halt([callback]) 
-Interrupt's further parsing. This function should be called from an ´on´ -callbacks, to cancel the parsing. This can be useful when the program should ignore all other arguments (when displaying help or version information).
+Interrupt's further parsing. This function should be called from an `on` -callbacks, to cancel the parsing. This can be useful when the program should ignore all other arguments (when displaying help or version information).
 
-The function also takes an optional callback argument. If the callback argument is specified, a ´halt´ callback will be added (instead of executing the ´halt´ command).
+The function also takes an optional callback argument. If the callback argument is specified, a `halt` callback will be added (instead of executing the `halt` command).
 
-Here is an example how to add an ´on_halt´ callback:
+Here is an example how to add an `on_halt` callback:
 
 	parser.halt(function() {
 		console.log('An option callback interupted the parser');
@@ -161,4 +161,3 @@ Released under a MIT-style license.
 COPYRIGHT
 ---------
 Copyright (c) 2009 Johan Dahlberg
-
